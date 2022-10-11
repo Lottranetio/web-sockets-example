@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Random</title>
+    </head>
+    <body>
+        <h1>Random number gen</h1>
+        <h2 id="labelValue"></h2>
+        <button id="buttonGenerate" onclick="sendMessage(event)">Generate</button>
+
+        <script>            
+            var ws = new WebSocket("ws://localhost:8000/ws");
+
+            ws.onmessage = function(event) {
+                document.getElementById("labelValue").innerHTML = event.data
+            };
+
+            function sendMessage(event) {
+                ws.send("requestGenerate")
+            };
+        </script>
+    </body>
+</html>
